@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 class ApiGeneralResponse<T> {
 
     @SerializedName("results")
-    val results:ArrayList<T>?=null
+    val results:T?=null
 
     @SerializedName("page")
     val page:Int?=null

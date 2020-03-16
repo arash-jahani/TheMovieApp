@@ -53,4 +53,13 @@ class ApiModule {
             .build()
     }
 
+    @Provides
+    @Singleton
+    fun providesGsonBuilder(): GsonBuilder
+    {
+        val gsonBuilder = GsonBuilder()
+
+        return gsonBuilder
+    }
+
 }
