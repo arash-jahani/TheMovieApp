@@ -12,7 +12,7 @@ import javax.inject.Inject
 /**
  * Created By ArashJahani on 2020/03/14
  */
-open abstract class BaseActivity : AppCompatActivity() , HasSupportFragmentInjector {
+abstract class BaseActivity : AppCompatActivity() , HasSupportFragmentInjector {
 
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -27,7 +27,5 @@ open abstract class BaseActivity : AppCompatActivity() , HasSupportFragmentInjec
     }
 
     override fun supportFragmentInjector() = fragmentDispatchingAndroidInjector
-
-
 
 }

@@ -8,7 +8,7 @@ import ir.arashjahani.themovieapp.data.model.MovieDetail
 /**
  * Created By ArashJahani on 2020/03/14
  */
-@Database(entities = arrayOf(Movie::class, MovieDetail::class),
+@Database(entities = arrayOf(Movie::class),
     version = 1 , exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 

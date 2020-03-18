@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.paging.PagedList
+import androidx.recyclerview.widget.DividerItemDecoration
 import ir.arashjahani.themovieapp.R
 import ir.arashjahani.themovieapp.data.model.Movie
 import ir.arashjahani.themovieapp.ui.base.BaseFragment
@@ -66,6 +68,11 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(), MoviesListNaviga
     }
 
     fun prepareView() {
+
+        // add dividers between RecyclerView's row items
+        val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        rv_movies.addItemDecoration(decoration)
+
         mMoviesAdapter.setOnItemClickListener(this)
         rv_movies.adapter = mMoviesAdapter
     }
@@ -75,6 +82,11 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(), MoviesListNaviga
         mMoviesListViewModel =
             ViewModelProvider(this, mViewModelFactory).get(MoviesListViewModel::class.java)
         return mMoviesListViewModel
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.show()
     }
 
     override fun switchToLoadingView() {
@@ -97,9 +109,9 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(), MoviesListNaviga
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onMovieItemClick(movieId: Int) {
+    override fun onMovieItemClick(movieItem: Movie) {
 
-        val bundle = bundleOf("MOVIE_ID" to movieId)
+        val bundle = bundleOf("MOVIE_ITEM" to movieItem)
 
         findNavController(this).navigate(
             R.id.actionMovieDetail,

@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide
 import ir.arashjahani.themovieapp.R
 import ir.arashjahani.themovieapp.data.model.Movie
 import ir.arashjahani.themovieapp.utils.AppConstants
+import ir.arashjahani.themovieapp.utils.getYear
+import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 /**
@@ -22,7 +24,7 @@ class MoviesAdapter(): PagedListAdapter<Movie,RecyclerView.ViewHolder>(MOVIE_COM
 
     interface MoviesAdapterItemClickListener {
 
-        fun onMovieItemClick(movieId:Int)
+        fun onMovieItemClick(movieItem:Movie)
 
     }
 
@@ -61,6 +63,10 @@ class MoviesAdapter(): PagedListAdapter<Movie,RecyclerView.ViewHolder>(MOVIE_COM
 
             itemView.lbl_title.text = movie.title
 
+            itemView.lbl_movie_release_date.text=movie.releaseDate?.getYear()
+
+            itemView.lbl_movie_vote_avg.text= movie.voteAverage.toString()
+
             Glide.with(itemView.context)
                 .load(String.format(AppConstants.MOVIE_POSTER_URL,movie.posterPath))
                 .centerInside().into(itemView.img_poster)
@@ -70,7 +76,7 @@ class MoviesAdapter(): PagedListAdapter<Movie,RecyclerView.ViewHolder>(MOVIE_COM
         fun setUpClickableView(clickListener: MoviesAdapterItemClickListener) {
 
             itemView.setOnClickListener { view ->
-                    movieItem?.id?.let { clickListener.onMovieItemClick(it) }
+                    movieItem?.let { clickListener.onMovieItemClick(it) }
             }
 
         }

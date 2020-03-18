@@ -1,9 +1,12 @@
 package ir.arashjahani.themovieapp.data.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "movie")
 data class Movie(
 
@@ -17,8 +20,14 @@ data class Movie(
 	@field:SerializedName("title")
 	val title: String? = null,
 
+	@field:SerializedName("overview")
+	val overview: String? = null,
+
 	@field:SerializedName("poster_path")
 	val posterPath: String? = null,
+
+	@field:SerializedName("backdrop_path")
+	val backdropPath: String? = null,
 
 	@field:SerializedName("release_date")
 	val releaseDate: String? = null,
@@ -31,4 +40,4 @@ data class Movie(
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int? = null
-)
+):Parcelable
