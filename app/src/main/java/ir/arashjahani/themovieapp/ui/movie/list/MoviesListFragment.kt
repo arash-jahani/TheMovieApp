@@ -25,7 +25,7 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class MoviesListFragment : BaseFragment<MoviesListViewModel>(), MoviesListNavigator,
+class MoviesListFragment : BaseFragment<MoviesListViewModel>(),
     MoviesAdapter.MoviesAdapterItemClickListener {
 
     @Inject
@@ -35,10 +35,15 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(), MoviesListNaviga
 
     private val mMoviesAdapter = MoviesAdapter()
 
+    var mSelectedYear:Int?=null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        mSelectedYear=arguments?.getInt("YEAR")
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movies_list, container, false)
     }
@@ -46,12 +51,11 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(), MoviesListNaviga
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mMoviesListViewModel.navigator = this
+        //mMoviesListViewModel.navigator = this //also need implement MoviesListNavigator
 
         initObserves()
 
         prepareView()
-
     }
 
     fun initObserves() {
@@ -68,6 +72,10 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(), MoviesListNaviga
     }
 
     fun prepareView() {
+
+        fab_filter.setOnClickListener {
+            findNavController(this).navigate(R.id.actionMovieFilter)
+        }
 
         // add dividers between RecyclerView's row items
         val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
@@ -87,26 +95,6 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(), MoviesListNaviga
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.show()
-    }
-
-    override fun switchToLoadingView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun switchToErrorView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun switchToEmptyView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun switchToContentView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showToast(message: Int, tr: Throwable?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onMovieItemClick(movieItem: Movie) {

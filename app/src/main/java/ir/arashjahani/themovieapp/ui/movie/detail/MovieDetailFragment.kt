@@ -62,7 +62,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailViewModel>() {
 
     fun prepareView(){
 
-        (activity as AppCompatActivity).supportActionBar?.hide()
+        hideActionBar()
 
         btn_back.setOnClickListener { NavHostFragment.findNavController(this).popBackStack() }
 

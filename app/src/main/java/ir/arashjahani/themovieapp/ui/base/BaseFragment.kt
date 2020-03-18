@@ -2,6 +2,7 @@ package ir.arashjahani.themovieapp.ui.base
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import dagger.android.support.AndroidSupportInjection
 
@@ -21,6 +22,10 @@ open abstract class BaseFragment<V : BaseViewModel<*>> : Fragment()  {
 
         mViewModel = getViewModel()
 
+    }
+
+    fun hideActionBar(){
+        (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
     abstract fun getViewModel():V
