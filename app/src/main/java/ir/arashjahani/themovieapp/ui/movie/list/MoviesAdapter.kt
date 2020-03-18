@@ -3,6 +3,9 @@ package ir.arashjahani.themovieapp.ui.movie.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +14,8 @@ import ir.arashjahani.themovieapp.R
 import ir.arashjahani.themovieapp.data.model.Movie
 import ir.arashjahani.themovieapp.utils.AppConstants
 import ir.arashjahani.themovieapp.utils.getYear
-import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import kotlinx.android.synthetic.main.item_movie.view.*
+
 
 /**
  * Created By ArashJahani on 2020/03/15
@@ -42,7 +45,6 @@ class MoviesAdapter(): PagedListAdapter<Movie,RecyclerView.ViewHolder>(MOVIE_COM
         return movieItemHolder
 
     }
-
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
@@ -92,4 +94,7 @@ class MoviesAdapter(): PagedListAdapter<Movie,RecyclerView.ViewHolder>(MOVIE_COM
                 oldItem == newItem
         }
     }
+
+
+
 }

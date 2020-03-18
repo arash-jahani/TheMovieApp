@@ -17,8 +17,8 @@ interface MovieDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveMovies(movies: List<Movie>)
 
-    @Query("SELECT * FROM movie")
-    fun getMovies(): DataSource.Factory<Int,Movie>
+    @Query("SELECT * FROM movie where releaseDate like :year ||'%' order by voteAverage desc")
+    fun getMovies(year:String): DataSource.Factory<Int,Movie>
 
     @Query("SELECT * FROM movie WHERE id LIKE :movieId")
     fun findMovieById(movieId: Int): Movie

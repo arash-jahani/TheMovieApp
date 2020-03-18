@@ -12,11 +12,11 @@ import javax.inject.Singleton
  * Created By ArashJahani on 2020/03/12
  */
 @Module
-class DatabaseModule{
+open class DatabaseModule{
 
     @Provides
     @Singleton
-    fun provideApplicationDatabase(context: Context): AppDatabase {
+    open fun provideApplicationDatabase(context: Context): AppDatabase {
         var applicationDatabase: AppDatabase =
             Room.databaseBuilder(context, AppDatabase::class.java, "movie-db")
                 .allowMainThreadQueries()
@@ -27,7 +27,7 @@ class DatabaseModule{
 
     @Provides
     @Singleton
-    fun provideMovieDao(applicationDatabase: AppDatabase): MovieDAO{
+    open fun provideMovieDao(applicationDatabase: AppDatabase): MovieDAO{
         return applicationDatabase.movieDao()
     }
 

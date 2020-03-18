@@ -10,6 +10,7 @@ import ir.arashjahani.themovieapp.data.model.MovieDetail
 import ir.arashjahani.themovieapp.data.model.MoviesListResult
 import ir.arashjahani.themovieapp.data.remote.ApiService
 import ir.arashjahani.themovieapp.utils.AppConstants.PAGE_SIZE
+import java.time.Year
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
@@ -23,13 +24,12 @@ class DataRepositoryImpl @Inject constructor(private val mApiService:ApiService,
     }
 
 
-    override fun getTopRatedMovies(): MoviesListResult {
+    override fun getTopRatedMovies(year: String): MoviesListResult {
 
         val networkErrors =boundaryCallback.networkErrors
 
-
-// Get the paged list
-        val data = LivePagedListBuilder(mMovieDAO.getMovies(), PAGE_SIZE)
+        // Get the paged list
+        val data = LivePagedListBuilder(mMovieDAO.getMovies(year), PAGE_SIZE)
             .setBoundaryCallback(boundaryCallback)
             .build()
 

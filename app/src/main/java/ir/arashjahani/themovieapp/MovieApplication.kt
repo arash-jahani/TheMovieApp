@@ -12,7 +12,7 @@ import javax.inject.Inject
 /**
  * Created By ArashJahani on 2020/03/12
  */
-open class MovieApplication : Application(), HasActivityInjector {
+class MovieApplication : Application(), HasActivityInjector {
 
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>

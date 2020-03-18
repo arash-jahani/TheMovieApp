@@ -54,7 +54,7 @@ class MovieFilterFragment : BaseFragment<MovieFilterViewModel>() {
 
         btn_choose_year.setOnClickListener {
 
-            bundle.putInt("YEAR",np_year.value)
+            bundle.putString("YEAR",np_year.value.toString())
             findNavController(this).setGraph(R.navigation.nav_graph, bundle)
         }
 

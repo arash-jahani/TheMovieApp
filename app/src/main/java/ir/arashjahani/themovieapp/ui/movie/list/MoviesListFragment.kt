@@ -35,14 +35,14 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(),
 
     private val mMoviesAdapter = MoviesAdapter()
 
-    var mSelectedYear:Int?=null
+    var mSelectedYear:String?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        mSelectedYear=arguments?.getInt("YEAR")
+        mSelectedYear=arguments?.getString("YEAR")
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movies_list, container, false)
@@ -83,6 +83,8 @@ class MoviesListFragment : BaseFragment<MoviesListViewModel>(),
 
         mMoviesAdapter.setOnItemClickListener(this)
         rv_movies.adapter = mMoviesAdapter
+
+        mMoviesListViewModel.getMovies(mSelectedYear?:"")
     }
 
     override fun getViewModel(): MoviesListViewModel {

@@ -10,7 +10,7 @@ import ir.arashjahani.themovieapp.data.model.MoviesListResult
  */
 interface DataRepository {
 
-    public fun getTopRatedMovies(): MoviesListResult
+    public fun getTopRatedMovies(year:String): MoviesListResult
 
     public fun findMovieById(movieId:Int):Single<MovieDetail>
 
